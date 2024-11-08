@@ -1,5 +1,6 @@
-import meta from "./deno.json" with { type: "json" };
 import { parseArgs, ParseOptions } from "@std/cli/parse-args";
+
+import meta from "./deno.json" with { type: "json" };
 
 function printUsage() {
 	console.log("Usage: ");

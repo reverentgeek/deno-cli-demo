@@ -23,5 +23,15 @@ Run these commands to get started
 [@std/cli](https://jsr.io/@std/cli)
 
 ```sh
-deno install jsr:@std/cli
+deno add jsr:@std/cli
+```
+
+## Scraper
+
+```sh
+deno add jsr:@std/dotenv
+```
+
+```sh
+deno run --allow-read --allow-env updater.ts
 ```
