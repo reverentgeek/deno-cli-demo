@@ -1,8 +1,8 @@
 # Build a Command-Line Application using Deno 2.0
 
-Command-line interfaces (CLI) are often used for automating tasks, such as building reports, synchronizing data between systems, migrating data, deploying applications, and the list goes on and on. Over the years, I have built countless CLI apps to save time. If I ever find myself doing something more than once, I try to find a way to automate it!
+Command-line interfaces (CLI) are often used for automating tasks, such as building reports, synchronizing data between systems, migrating data, deploying applications, and so on and on. Over the years, I have built countless CLI apps to save time. If I ever find myself doing something more than once, I try to find a way to automate it!
 
-Deno 2.0 is a great solution for writing CLI apps. It supports TypeScript and JavaScript, it's cross-platform (runs on Windows, macOS, and Linux), has dozens of powerful tools in its [standard library](https://jsr.io/@std), and can also tap into [most Node.js modules](https://docs.deno.com/examples/npm/). The only limit is your imagination!
+Deno 2.0 is an excellent solution for writing CLI apps. It supports TypeScript and JavaScript, it's cross-platform (runs on Windows, macOS, and Linux), has dozens of powerful tools in its [standard library](https://jsr.io/@std), and can also tap into [most Node.js modules](https://docs.deno.com/examples/npm/). The only limit is your imagination!
 
 In this tutorial, you will learn how to:
 
@@ -21,7 +21,7 @@ First, let's make sure you have the tools you need!
 
 Open your computer's terminal (or command prompt). Change the current directory to the folder where you normally save projects.
 
-> **Note:** If you don't already have a folder where you store software projects, I personally like to create a folder at the root of my home directory named `projects`. More than likely, when you open your computer's terminal/console app, you are automatically placed in your "user home" folder. Use `mkdir projects` (or `md projects` if you're on Windows) to create the folder. Then, use `cd projects` to change to that new folder.
+> **Note:** If you don't already have a folder where you store software projects, I like creating a folder at the root of my home directory named `projects`. More than likely, when you open your computer's terminal/console app, you are automatically placed in your "user home" folder. Use `mkdir projects` (or `md projects` if you're on Windows) to create the folder. Then, use `cd projects` to change to that new folder.
 
 Verify you have Deno 2.0 (or higher) installed using the following command.
 
@@ -74,11 +74,11 @@ You've built your first Deno CLI application! Feel free to play around with writ
 
 ## Using Command-Line Arguments
 
-Arguments? No, we're not talking about getting into a heated debate with your command-line. Although that can certainly happen. Computers can be rather obstinate.
+Arguments? No, we're not talking about getting into a heated debate with your terminal. Although that can certainly happen. Computers can be rather obstinate.
 
 _Command-line arguments_ are options and values you might provide the CLI when you run the app. When you enter `deno run hello.ts`, `deno` is the CLI, and `run hello.ts` are two _arguments_ you provide to the CLI.
 
-Create a new file in the project named `add.ts` and add the following code.
+Create a new file named `add.ts` and add the following code.
 
 ```typescript
 import { parseArgs } from "@std/cli/parse-args";
@@ -96,7 +96,7 @@ The idea is to take two numbers and add them together. Try it out!
 deno run add.ts 1 2
 ```
 
-Experiment with additional arguments. Or, none at all. The `parseArgs` function can also handle arguments traditionally called _switches_ and _flags_. Try the following and observe the output.
+Experiment with additional arguments. Or none at all. The `parseArgs` function can also handle arguments traditionally called _switches_ and _flags_. Try the following and observe the output.
 
 ```sh
 deno run add.ts 3 4 --what=up -t -y no
@@ -149,7 +149,7 @@ const sum = numbers.reduce((sum, val) => sum + val);
 console.log(`${numbers.join(" + ")} = ${sum}`);
 ```
 
-Whoa, there's a lot going on here 😬 Let's try it out, first, and then we'll cover some of highlights. Try the following commands and see how the output changes.
+Whoa, there's a lot going on here 😬 Let's try it out first, and then we'll cover some of the highlights. Try the following commands and see how the output changes.
 
 ```sh
 deno run sum.ts 1 2 3 4 5
@@ -159,7 +159,7 @@ deno run sum.ts -h
 deno run sum.ts 1 2 three
 ```
 
-Now, if you go back and look through the code in `sum.ts` you can probably make out some of the logic involved with handling the different arguments. The main thing I want to point out is this block of code.
+Now, if you go back and look through the code in `sum.ts`, you can probably figure out some of the logic involved in handling the different arguments. The main thing I want to point out is this block of code.
 
 ```typescript
 const options: ParseOptions = {
@@ -182,7 +182,7 @@ Imagine you're creating a CLI app to automate a report. Your app might connect t
 
 > Never embed secrets (sensitive information such as user names, passwords, API keys, connection strings, etc.) in your code. You don't want your secrets ending up in the hands of the wrong people!
 
-In this case, you may want the CLI to prompt for the sensitive information when it runs. Let's create another example to demonstrate how this is done.
+In this case, the CLI should prompt for the sensitive information when it runs. Let's create another example to demonstrate how this is done.
 
 First, add a new dependency using the following command.
 
@@ -207,7 +207,7 @@ export async function simulateTask(ms: number, message: string) {
     spinner.stop();
     const finish = performance.now();
     const duration = Math.round((finish - start) / 100) / 10;
-    console.log(`${message}  (${duration.toFixed(1)}s).`);
+    console.log(`${message} (${duration.toFixed(1)}s).`);
 }
 ```
 
@@ -291,7 +291,7 @@ Did you get a strange message like `⚠️  Deno requests read access to...`? Wh
 
 Deno is [secure by default](https://docs.deno.com/runtime/fundamentals/security/). It won't be able to read/write files, access your local environment variables, connect to your network, and a number of other potentially risky operations unless you explicitly give it permission.
 
-Now try running it again using this command. Don't worry, it's not doing anything, just _simulating_ what a real app might look like.
+Now run it using the following command. Don't worry. It's not doing anything; it's just _simulating_ what a real app might look like.
 
 ```sh
 deno run --allow-read --allow-env updater.ts
@@ -301,7 +301,7 @@ Wasn't that cool??
 
 ### Deno tasks
 
-However, including those permissions is lot to type every time you want to run the CLI app. Let's add a task to make it easier. Open up your `deno.json` file and update the `"tasks"` with the following.
+However, including those permissions is a lot to type every time you want to run the CLI app. Let's add a task to make it easier. Open up your `deno.json` file and update the `"tasks"` with the following.
 
 ```json
 "tasks": {
@@ -349,7 +349,9 @@ Now run the `updater` task again. It should run without prompting you for a user
 
 ## Compile Your CLI App to an Executable
 
-You can compile a Deno-powered CLI apps into standalone executable. You could then share this executable with others, or use a task scheduler to automatically run the executable periodically.
+Want to share your CLI app with others or run the app on another computer? You can compile a Deno-powered CLI app into a standalone executable! Standalone means it can run without installing Deno or any of the libraries. Everything is bundled 📦
+
+> **Pro tip:** Use a task scheduler to run the executable periodically.
 
 ```sh
 deno compile --allow-read --allow-env updater.ts
@@ -363,7 +365,12 @@ You should now have an executable version!
 
 Among other things, you can create executables [for other platforms](https://docs.deno.com/runtime/reference/cli/compiler/#cross-compilation).
 
-## Additional CLI Tools for Deno
+## Wrapping Up and Additional CLI Tools for Deno
+
+Thank you for joining me on this journey of learning Deno! If you have any questions or suggestions, please drop them in the comments.
+
+- Get the [source code](https://github.com/reverentgeek/deno-cli-demo) for the examples
+- Connect with me: [X/Twitter](https://x.com/reverentgeek) | [BlueSky](https://staging.bsky.app/profile/reverentgeek.com) | [Threads](https://www.threads.net/@reverentgeek) | [YouTube](https://www.youtube.com/ReverentGeek) | [LinkedIn](https://www.linkedin.com/in/davidneal)
 
 Here are more CLI tools for Deno you might explore!
 
