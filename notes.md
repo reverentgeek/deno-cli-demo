@@ -20,13 +20,15 @@ Run these commands to get started
   deno test
 ```
 
+[jsr.io](https://jsr.io/)
+
 [@std/cli](https://jsr.io/@std/cli)
 
 ```sh
 deno add jsr:@std/cli
 ```
 
-## Scraper
+## Updater
 
 ```sh
 deno add jsr:@std/dotenv

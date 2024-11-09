@@ -1,6 +1,6 @@
 {
     "tasks": {
-        "dev": "deno run --watch main.ts",
+        "sum": "deno run sum.ts",
         "updater": "deno run --allow-read --allow-env updater.ts"
     },
     "imports": {
