@@ -1,7 +1,7 @@
 {
     "tasks": {
-        "sum": "deno run sum.ts",
-        "updater": "deno run --allow-read --allow-env updater.ts"
+        "updater": "deno run --allow-read --allow-env updater.ts",
+        "build": "deno compile --allow-read --allow-env updater.ts"
     },
     "imports": {
         "@std/assert": "jsr:@std/assert@1",

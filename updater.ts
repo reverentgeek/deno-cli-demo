@@ -15,48 +15,47 @@ function printUsage() {
     console.log("  -o, --output      Output file");
 }
 
-if (import.meta.main) {
-    const options: ParseOptions = {
-        boolean: ["help", "version"],
-        string: ["input", "output"],
-        alias: { "help": "h", "version": "v", "input": "i", "output": "o" },
-    };
-    const args = parseArgs(Deno.args, options);
+const options: ParseOptions = {
+    boolean: ["help", "version"],
+    string: ["input", "output"],
+    default: { "input": "data.csv", "output": "report.pdf" },
+    alias: { "help": "h", "version": "v", "input": "i", "output": "o" },
+};
+const args = parseArgs(Deno.args, options);
 
-    if (args.help) {
-        printUsage();
-        Deno.exit(0);
-    } else if (args.version) {
-        // Pro tip: add a version to your deno.json file
-        console.log(meta.version ? meta.version : "1.0.0");
-        Deno.exit(0);
-    }
-
-    // validate the input and output arguments
-    if (!args.input || !args.output) {
-        console.log("You must specify both an input and output file");
-        printUsage();
-        Deno.exit(1);
-    }
-
-    // attempt to get the username and password from environment variables
-    let user = Deno.env.get("MY_APP_USER");
-    let password = Deno.env.get("MY_APP_PASSWORD");
-
-    if (user === undefined) {
-        const userPrompt = prompt("Please enter the username:");
-        user = userPrompt ?? "";
-    }
-    if (password === undefined) {
-        const passPrompt = promptSecret("Please enter the password:");
-        password = passPrompt ?? "";
-    }
-
-    // simulating a few long-running tasks
-    await simulateTask(1000, `Reading input file [${args.input}]`);
-    await simulateTask(1500, `Connecting with user [${user}]`);
-    await simulateTask(5000, `Reading data from external system`);
-    await simulateTask(3200, `Writing output file [${args.output}]`);
-
-    console.log("Done!");
+if (args.help) {
+    printUsage();
+    Deno.exit(0);
+} else if (args.version) {
+    // Pro tip: add a version to your deno.json file
+    console.log(meta.version ? meta.version : "1.0.0");
+    Deno.exit(0);
 }
+
+// validate the input and output arguments
+if (!args.input || !args.output) {
+    console.log("You must specify both an input and output file");
+    printUsage();
+    Deno.exit(1);
+}
+
+// attempt to get the username and password from environment variables
+let user = Deno.env.get("MY_APP_USER");
+let password = Deno.env.get("MY_APP_PASSWORD");
+
+if (user === undefined) {
+    const userPrompt = prompt("Please enter the username:");
+    user = userPrompt ?? "";
+}
+if (password === undefined) {
+    const passPrompt = promptSecret("Please enter the password:");
+    password = passPrompt ?? "";
+}
+
+// simulating a few long-running tasks
+await simulateTask(1000, `Reading input file [${args.input}]`);
+await simulateTask(1500, `Connecting with user [${user}]`);
+await simulateTask(5000, `Reading data from external system`);
+await simulateTask(3200, `Writing output file [${args.output}]`);
+
+console.log("Done!");
