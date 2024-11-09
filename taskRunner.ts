@@ -5,12 +5,12 @@ function sleep(ms: number): Promise<void> {
 }
 
 export async function simulateTask(ms: number, message: string) {
-    const spinner = new Spinner({
-        message: `Running: ${message}...`,
-        color: "yellow",
-    });
+    const spinner = new Spinner({ message, color: "yellow" });
+    const start = performance.now();
     spinner.start();
     await sleep(ms);
     spinner.stop();
-    console.log("Finished: " + message + ".");
+    const finish = performance.now();
+    const duration = Math.round((finish - start) / 100) / 10;
+    console.log(`${message}  (${duration.toFixed(1)}s).`);
 }

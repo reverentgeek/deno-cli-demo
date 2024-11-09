@@ -53,10 +53,10 @@ if (import.meta.main) {
     }
 
     // simulating a few long-running tasks
-    await simulateTask(1000, `reading input file [${args.input}]`);
-    await simulateTask(1000, `connecting with user [${user}]`);
-    await simulateTask(5000, `reading data from external system`);
-    await simulateTask(3000, `writing output file [${args.output}]`);
+    await simulateTask(1000, `Reading input file [${args.input}]`);
+    await simulateTask(1500, `Connecting with user [${user}]`);
+    await simulateTask(5000, `Reading data from external system`);
+    await simulateTask(3200, `Writing output file [${args.output}]`);
 
     console.log("Done!");
 }
